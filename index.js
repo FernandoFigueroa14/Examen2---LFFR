@@ -4,6 +4,8 @@ const path = require('path');
 const { Sequelize } = require('sequelize'); //Conexión base de datos
 const userConfigDB = require('./database/config/config');
 
+const ciudadesRouter = require('./routes/ciudadesRouter');
+
 const app = express();
 
 const PORT = process.env.PORT | 8080;
@@ -14,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.engine('html',require('ejs').renderFile);
 app.set('view engine','ejs');
+
+app.use('/ciudades', ciudadesRouter);
 
 app.listen(PORT, () => {
     console.log(`Server running on Port: ${PORT} :D`);
