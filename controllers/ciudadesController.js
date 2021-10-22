@@ -87,15 +87,17 @@ const ciudadesController = {
         buscarCiudad: async (req, res) => {
             console.log(req.body);
             
-            await Ciudades.findOne({where: req.body})
+            await Ciudades.findAll({where: req.body})
                             .then(async ciudad => {
-                                await Ciudades.update({interes: ciudad.interes+1},{where: {id: ciudad.id}})
+                                ciudad.forEach(registro => {
+                                    await Ciudades.update({interes: registro.interes+1},{where: {id: registro.id}})
                                 .then(() => {
                                     console.log("El interes ha aumentado");
                                 })
                                 .catch(error => {
                                     console.log(error);
                                     res.json({estado: "Error"});
+                                });
                                 });
                                 console.log(ciudad);
                                 res.json(ciudad);
