@@ -89,3 +89,5 @@ _Se pueden buscar registros ingresando el id, el nombre, el país, la descripci�
 }
 ```
 _El parametro a buscar debe de ser identico al que está en la base de datos._
+
+_El contador de interes aumenta cuando se busca un registro_
