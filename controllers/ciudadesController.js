@@ -88,8 +88,8 @@ const ciudadesController = {
             console.log(req.body);
             
             await Ciudades.findAll({where: req.body})
-                            .then(async ciudad => {
-                                ciudad.forEach(registro => {
+                            .then(ciudad => {
+                                ciudad.forEach(async registro => {
                                     await Ciudades.update({interes: registro.interes+1},{where: {id: registro.id}})
                                 .then(() => {
                                     console.log("El interes ha aumentado");
