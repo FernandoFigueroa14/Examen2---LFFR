@@ -27,5 +27,5 @@ module.exports=(sequelize, dataTypes) => {
     }
     const Ciudad = sequelize.define(alias, cols, config)
   
-    return Ciudad
+    return Ciudad;
   }

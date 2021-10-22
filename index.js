@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const { Sequelize } = require('sequelize'); //Conexión base de datos
 const userConfigDB = require('./database/config/config');
+const db = require('./database/models')
 
 const ciudadesRouter = require('./routes/ciudadesRouter');
 
@@ -19,9 +20,13 @@ app.set('view engine','ejs');
 
 app.use('/ciudades', ciudadesRouter);
 
-app.listen(PORT, () => {
-    console.log(`Server running on Port: ${PORT} :D`);
-});
+
+db.sequelize.sync()
+            .then(
+                app.listen(PORT, () => {
+                    console.log(`Server running on Port: ${PORT} :D`);
+                }))
+            .catch(err=>console.log(err))
 
 const checkConectionDB = async () => {
     const userConfigDB_Development = userConfigDB.development
